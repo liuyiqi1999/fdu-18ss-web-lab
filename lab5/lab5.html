@@ -117,7 +117,7 @@
          <h2>View Cart</h2>
       </div>
          
-      <table class="table table-condensed">
+      <table class="table table-condensed" id="table">
          <tr>
             <th>Image</th>
             <th>Product</th>
@@ -125,7 +125,7 @@
             <th>Price</th>
             <th>Amount</th>
          </tr>
-
+         
          <!-- 这是你需要修改的地方 -->
          <!-- 本来是下面这样👇 -->
 
@@ -160,19 +160,19 @@
 
          <tr class="success strong">
             <td colspan="4" class="moveRight">Subtotal</td>
-            <td >$1700</td>
+            <td id="subtotal">$1700</td>
          </tr>
          <tr class="active strong">
             <td colspan="4" class="moveRight">Tax</td>
-            <td>$170</td>
+            <td id="tax">$170</td>
          </tr>  
          <tr class="strong">
             <td colspan="4" class="moveRight">Shipping</td>
-            <td>$100</td>
+            <td id="shipping">$100</td>
          </tr> 
          <tr class="warning strong text-danger">
             <td colspan="4" class="moveRight">Grand Total</td>
-            <td>$1970</td>
+            <td id="total">$1970</td>
          </tr>    
          <tr >
             <td colspan="4" class="moveRight"><button type="button" class="btn btn-primary" >Continue Shopping</button></td>
@@ -264,7 +264,72 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="bootstrap3_defaultTheme/assets/js/jquery.js"></script>
-    <script src="bootstrap3_defaultTheme/dist/js/bootstrap.min.js"></script>    
+    <script type="text/JavaScript">
+       var cart = document.querySelector("#table tbody");
+       var createTr = function(){
+          var tr = document.createElement("tr");
+          return tr;
+       }
+       var createTd = function(){
+          var td = document.createElement("td");
+          return td;
+       }
+       var createImg = function(url){
+          var img = document.createElement("img");
+          img.className = "img-thumbnail";
+          img.src = "images/art/tiny/" + url;
+          img.alt = "...";
+          return img;
+       }
+
+       var img1 = createImg('116010.jpg');
+       var img2 = createImg('113010.jpg');
+       var file2 = new Array(img1,'Artist Holding a Thistle',2,"$500");
+       var file1 = new Array(img2,'Self-portrait in a Straw Hat',1,"$700");
+       var files = new Array(file1,file2);
+       for(var i=0;i<files.length;i++){
+          files[i][4] = "$"+files[i][2]*parseInt(files[i][3].slice(1));
+       }
+       var trs = new Array(files.length);
+       var tds = new Array(file1.length);
+      //  var imgs = new Array(createImg('116010.jpg'),createImg('113010.jpg'));
+
+       for(var i=0;i<files.length;i++){
+         trs[i] = createTr();
+         for(var u=0;u<file1.length;u++){
+             tds[u] = createTd();
+             if(u==0){
+                tds[u].appendChild(files[i][u]);
+             }else{
+             tds[u].innerHTML = files[i][u];
+            }
+            trs[i].appendChild(tds[u]);
+          }
+         
+         cart.insertBefore(trs[i],cart.firstChild.nextSibling);
+       }
+
+       var subtotal = document.getElementById("subtotal");
+       subtotal.value = 0;
+       var tax = document.getElementById("tax");
+       tax.value = 0;
+       var shipping = document.getElementById("shipping");
+       shipping.value = 100;
+       shipping.innerHTML = "$"+shipping.value;
+       var total = document.getElementById("total");
+       total.value = 0;
+       
+       for(var i=0;i<files.length;i++){
+          subtotal.value += parseInt(files[i][4].slice(1));
+       }
+       subtotal.innerHTML = "$"+subtotal.value;
+       tax.value = subtotal.value / 10;
+       tax.innerHTML = "$"+tax.value;
+       total.value = subtotal.value+tax.value+shipping.value;
+       total.innerHTML="$"+total.value;
+
+   </script>
+    <!-- <script src="bootstrap3_defaultTheme/assets/js/jquery.js"></script>
+    <script src="bootstrap3_defaultTheme/dist/js/bootstrap.min.js"></script>     -->
   </body>
 </html>
