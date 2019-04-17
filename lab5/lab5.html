@@ -298,10 +298,10 @@
          trs[i] = createTr();
          for(var u=0;u<file1.length;u++){
              tds[u] = createTd();
-             if(u==0){
-                tds[u].appendChild(files[i][u]);
-             }else{
-             tds[u].innerHTML = files[i][u];
+            if(u==0){
+               tds[u].appendChild(files[i][u]);
+            }else{
+               tds[u].innerHTML = files[i][u];
             }
             trs[i].appendChild(tds[u]);
           }
@@ -311,17 +311,18 @@
 
        var subtotal = document.getElementById("subtotal");
        subtotal.value = 0;
+       for(var i=0;i<files.length;i++){
+          subtotal.value += parseInt(files[i][4].slice(1));
+       }
        var tax = document.getElementById("tax");
        tax.value = 0;
        var shipping = document.getElementById("shipping");
-       shipping.value = 100;
+       if(subtotal.value<=1000) {shipping.value=40;}
+       else {shipping.value = 0;}
        shipping.innerHTML = "$"+shipping.value;
        var total = document.getElementById("total");
        total.value = 0;
        
-       for(var i=0;i<files.length;i++){
-          subtotal.value += parseInt(files[i][4].slice(1));
-       }
        subtotal.innerHTML = "$"+subtotal.value;
        tax.value = subtotal.value / 10;
        tax.innerHTML = "$"+tax.value;
