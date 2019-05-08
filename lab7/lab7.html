@@ -1,45 +1,209 @@
 <html>
-<head>
-<title>Chapter 10</title>
-<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="lab7.css">
-<script>
-</script>      
-</head>    
-<body class="tiled">
-<header>
-    <h1>Art Filters</h1>
-</header>
-<main>
-    <div id="sliderBox">
-        <form>
-           <label>Opacity: </label><p><input type="range" id="sliderOpacity" min="0" max="100" value="100" class="sliders" /> <span id="numOpacity">100</span>%</p>
-           <p><label>Saturation: </label><input type="range" id="sliderSaturation" min="1" max="300" value="100" class="sliders"/> <span id="numSaturation">100</span>%</p>
-           <p><label>Brightness: </label><input type="range" id="sliderBrightness" min="0" max="300" value="100" class="sliders" /> <span id="numBrightness">100</span>%</p>
-           <p><label>Hue Rotate: </label><input type="range" id="sliderHue" min="0" max="360" value="0" class="sliders" /> <span id="numHue">0</span>deg</p>
-           <p><label>Grayscale: </label><input type="range" id="sliderGray" min="0" max="100" value="0" class="sliders"/> <span id="numGray">0</span>%</p>
-           <p><label>Blur: </label><input type="range" id="sliderBlur" min="0" max="10" value="0" class="sliders" /> <span id="numBlur">0</span>px</p>
-           <p><button id="resetFilters">Reset</button> </p>
-        </form>    
-    </div>
-    <figure id="imgManipulated">
-        <img src="images/medium/painting1.jpg" > 
-        <figcaption>
-            <em>Still Life with Flowers in a Glass Vase</em> <br>
-            Jan Davidsz. de Heem, 1650 - 1683
-        </figcaption>
-    </figure>   
-    <div id="thumbBox">
-        <div><img src="images/small/painting1.jpg"  alt="Still Life with Flowers in a Glass Vase" title="Jan Davidsz. de Heem, 1650 - 1683"/></div>
-        <div><img src="images/small/painting2.jpg"  alt="Portrait of Alida Christina Assink" title="Jan Adam Kruseman, 1833"/></div>
-        <div><img src="images/small/painting3.jpg"  alt="Self-portrait" title="Vincent van Gogh, 1887"/></div>
-        <div><img src="images/small/painting4.jpg"  alt="William II, Prince of Orange, and his Bride, Mary Stuart" title="Anthony van Dyck, 1641"/></div>
-        <div><img src="images/small/painting5.jpg"  alt="Milkmaid" title="Johannes Vermeer, c. 1660"/></div>
-    </div>
-</main>
-<script>
+    <head>
+        <title>Chapter 10</title>
+        <link
+            href="http://fonts.googleapis.com/css?family=Merriweather"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="http://fonts.googleapis.com/css?family=Open+Sans"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link rel="stylesheet" href="lab7.css" />
+        <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script></script>
+    </head>
+    <body class="tiled">
+        <header>
+            <h1>Art Filters</h1>
+        </header>
+        <main>
+            <div id="sliderBox">
+                <form>
+                    <label>Opacity: </label>
+                    <p>
+                        <input
+                            type="range"
+                            id="sliderOpacity"
+                            min="0"
+                            max="100"
+                            value="100"
+                            class="sliders"
+                        />
+                        <span id="numOpacity">100</span>%
+                    </p>
+                    <p>
+                        <label>Saturation: </label
+                        ><input
+                            type="range"
+                            id="sliderSaturation"
+                            min="1"
+                            max="300"
+                            value="100"
+                            class="sliders"
+                        />
+                        <span id="numSaturation">100</span>%
+                    </p>
+                    <p>
+                        <label>Brightness: </label
+                        ><input
+                            type="range"
+                            id="sliderBrightness"
+                            min="0"
+                            max="300"
+                            value="100"
+                            class="sliders"
+                        />
+                        <span id="numBrightness">100</span>%
+                    </p>
+                    <p>
+                        <label>Hue Rotate: </label
+                        ><input
+                            type="range"
+                            id="sliderHue"
+                            min="0"
+                            max="360"
+                            value="0"
+                            class="sliders"
+                        />
+                        <span id="numHue">0</span>deg
+                    </p>
+                    <p>
+                        <label>Grayscale: </label
+                        ><input
+                            type="range"
+                            id="sliderGray"
+                            min="0"
+                            max="100"
+                            value="0"
+                            class="sliders"
+                        />
+                        <span id="numGray">0</span>%
+                    </p>
+                    <p>
+                        <label>Blur: </label
+                        ><input
+                            type="range"
+                            id="sliderBlur"
+                            min="0"
+                            max="10"
+                            value="0"
+                            class="sliders"
+                        />
+                        <span id="numBlur">0</span>px
+                    </p>
+                    <p><button id="resetFilters">Reset</button></p>
+                </form>
+            </div>
+            <figure id="imgManipulated">
+                <img src="images/medium/painting1.jpg" />
+                <figcaption>
+                    <em>Still Life with Flowers in a Glass Vase</em> <br />
+                    Jan Davidsz. de Heem, 1650 - 1683
+                </figcaption>
+            </figure>
+            <div id="thumbBox">
+                <div>
+                    <img
+                        src="images/small/painting1.jpg"
+                        alt="Still Life with Flowers in a Glass Vase"
+                        title="Jan Davidsz. de Heem, 1650 - 1683"
+                    />
+                </div>
+                <div>
+                    <img
+                        src="images/small/painting2.jpg"
+                        alt="Portrait of Alida Christina Assink"
+                        title="Jan Adam Kruseman, 1833"
+                    />
+                </div>
+                <div>
+                    <img
+                        src="images/small/painting3.jpg"
+                        alt="Self-portrait"
+                        title="Vincent van Gogh, 1887"
+                    />
+                </div>
+                <div>
+                    <img
+                        src="images/small/painting4.jpg"
+                        alt="William II, Prince of Orange, and his Bride, Mary Stuart"
+                        title="Anthony van Dyck, 1641"
+                    />
+                </div>
+                <div>
+                    <img
+                        src="images/small/painting5.jpg"
+                        alt="Milkmaid"
+                        title="Johannes Vermeer, c. 1660"
+                    />
+                </div>
+            </div>
+        </main>
+        <script>
+            var bigPicture = $("#imgManipulated img");
+            var thumbBox = $("#thumbBox");
+            var featureTitle = $("#imgManipulated figcaption em");
+            var featureAuthor = $("#imgManipulated figcaption:last-child");
+            var sliderBox = $("#sliderBox");
 
-</script>    
-</body>   
+            thumbBox.on("click", function(event) {
+                var imgClicked = event.target;
+                var imgCLickedPath = imgClicked.src.toString();
+                var bigPicturePath = bigPicture.attr("src").toString();
+                if (imgCLickedPath != bigPicturePath) {
+                    bigPicture.attr(
+                        "src",
+                        imgCLickedPath.replace(/small/, "medium")
+                    );
+                    featureTitle.html(imgClicked.alt.toString());
+                    featureAuthor.html(imgClicked.title.toString());
+                }
+            });
+
+            sliderBox.bind("input propertychange", function(event) {
+                switch (event.target.id) {
+                    case "sliderOpacity":
+                        $("#numOpacity").html(event.target.value.toString());
+                        break;
+                    case "sliderSaturation":
+                        $("#numSaturation").html(event.target.value.toString());
+                        break;
+                    case "sliderBrightness":
+                        $("#numBrightness").html(event.target.value.toString());
+                        break;
+                    case "sliderHue":
+                        $("#numHue").html(event.target.value.toString());
+                        break;
+                    case "sliderGray":
+                        $("#numGray").html(event.target.value.toString());
+                        break;
+                    case "sliderBlur":
+                        $("#numBlur").html(event.target.value.toString());
+                        break;
+                    case "resetFilters":
+                        bigPicture.css({
+                            "-webkit-filter": "none",
+                            "filter": "none"
+                        });
+                        break;
+                    default:
+                        break;
+                }
+
+                var opacity = $("#sliderOpacity")[0].value;
+                var saturation = $("#sliderSaturation")[0].value;
+                var brightness = $("#sliderBrightness")[0].value;
+                var hue = $("#sliderHue")[0].value;
+                var gray = $("#sliderGray")[0].value;
+                var blur = $("#sliderBlur")[0].value;
+                bigPicture.css({
+                    "-webkit-filter": `opacity(${opacity}%) saturate(${saturation}%) brightness(${brightness}%) hue-rotate(${hue}deg) grayscale(${gray}%) blur(${blur}px)`,
+                    "filter": `opacity(${opacity}%) saturate(${saturation}%) brightness(${brightness}%) hue-rotate(${hue}deg) grayscale(${gray}%) blur(${blur}px)`
+                });
+            });
+        </script>
+    </body>
 </html>
