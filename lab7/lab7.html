@@ -1,18 +1,7 @@
 <html>
     <head>
         <title>Chapter 10</title>
-        <link
-            href="http://fonts.googleapis.com/css?family=Merriweather"
-            rel="stylesheet"
-            type="text/css"
-        />
-        <link
-            href="http://fonts.googleapis.com/css?family=Open+Sans"
-            rel="stylesheet"
-            type="text/css"
-        />
         <link rel="stylesheet" href="lab7.css" />
-        <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
         <script></script>
     </head>
     <body class="tiled">
@@ -143,12 +132,6 @@
             </div>
         </main>
         <script>
-            var bigPicture = $("#imgManipulated img");
-            var thumbBox = $("#thumbBox");
-            var featureTitle = $("#imgManipulated figcaption em");
-            var featureAuthor = $("#imgManipulated figcaption:last-child");
-            var sliderBox = $("#sliderBox");
-
             thumbBox.on("click", function(event) {
                 var imgClicked = event.target;
                 var imgCLickedPath = imgClicked.src.toString();
@@ -186,7 +169,7 @@
                     case "resetFilters":
                         bigPicture.css({
                             "-webkit-filter": "none",
-                            "filter": "none"
+                            filter: "none"
                         });
                         break;
                     default:
@@ -201,7 +184,7 @@
                 var blur = $("#sliderBlur")[0].value;
                 bigPicture.css({
                     "-webkit-filter": `opacity(${opacity}%) saturate(${saturation}%) brightness(${brightness}%) hue-rotate(${hue}deg) grayscale(${gray}%) blur(${blur}px)`,
-                    "filter": `opacity(${opacity}%) saturate(${saturation}%) brightness(${brightness}%) hue-rotate(${hue}deg) grayscale(${gray}%) blur(${blur}px)`
+                    filter: `opacity(${opacity}%) saturate(${saturation}%) brightness(${brightness}%) hue-rotate(${hue}deg) grayscale(${gray}%) blur(${blur}px)`
                 });
             });
         </script>
